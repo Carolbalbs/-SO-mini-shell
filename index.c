@@ -1,0 +1,91 @@
+#include "index.h"
+#include <string.h>
+
+t_builtin g_builtin[] = {
+    {.builtin_name ="echo", .foo=index_echo};
+    {.builtin_name ="env", .foo=index_env};
+    {.builtin_name ="exit", .foo=index_exit},
+    {.builtin_name =NULL}
+
+};
+
+void index_exec(char **args){
+    int     i;
+    const char *curr;
+
+    i = 0;
+    while ((curr = g_builtin[i].builtin_name))
+    {
+        if (!strcmp(curr, args[0]))
+        {
+            g_builtin[i].foo(args);
+            return ;
+        }
+        ++i;
+    }
+   // index_lauch(args);
+}
+char **index_split_line(char *line){
+    char            **tokens;
+    unsigned int    position;
+    size_t          bufsize; 
+
+    bufsize = BUFSIZ;
+    tokens = Malloc(bufsize * sizeof *tokens);
+    position = 0;
+
+    for(char *token = strtok(line, DELL); token; token = strtok(NULL, DELL)){
+        tokens[position++] = token;
+        if (position >= bufsize){
+            
+            bufsize *= 2;
+            tokens = Realloc(tokens, bufsize * sizeof(*tokens));
+        }
+    }
+    tokens[position] = NULL;
+    return tokens;
+}
+char *index_read_line(void){
+
+    char   *buf;
+    size_t bufsize;
+    char cwd[BUFSIZ];
+
+    buf = NULL;
+    Getcwd(cwd, sizeof(cwd));
+    p(C"🐚%s🐚"RST"$>",cwd);
+    if (getline(&buf, &bufsize, stdin) == -1){
+        buf = NULL; 
+        if (feof(stdin))
+            p(RED"[EOF]"RST);
+        else{
+            p(RED"getline failed"RST); 
+        } 
+    }
+    return buf;  
+}
+
+int main(){
+    
+    char *line;
+    char **args;
+    printbanner();
+    //REPL
+    //READ -> EVALUATE -> PRINT/EXECUTE -> LOOP
+    
+    //1)prompt + get line
+    while((line = index_read_line())){
+        
+        //2) get tokens gettok
+                    // ->lexing ->parsing EVALUATING
+        args = index_split_line(line);
+        //3) Exec
+        //4) free
+        free(line);
+        free(args);
+
+
+    }
+    
+    return EXIT_SUCCESS;
+}
