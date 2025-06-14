@@ -1,9 +1,13 @@
 #ifndef INDEX_H
-# define INDEX_H
+#define INDEX_H
+#define EX_OK
+#define EX_OSERR 71
+#define EX_UNAVAILABLE 69
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include <sys/wait.h>
 
 /*
@@ -21,7 +25,8 @@
 #define RST 	"\033[0m"
 
 #define p(...) printf(__VA_ARGS__)
-#define DELL "\n\t\v\f\r"
+#define DEL "\n\t \v\f\r"
+#define INDEX_jr 0
 
 typedef struct s_builtin
 {
@@ -29,10 +34,17 @@ typedef struct s_builtin
     int (*foo)(char **);
 }   t_builtin;
 
-int    index_exit(char **);
-void    spinnerLoading();
-void    Getcwd(char *, size_t);
 void    printbanner(void);
+void    spinnerLoading();
+
+void    Chdir(const char *path);
+pid_t   Fork(void);
+void    Execvp(const char *file,char *const argv[]);
+pid_t   Wait(int *status);
+pid_t   Wait(pid_t pid, int *status, int options);
+int     index_exit(char **);
+void    Getcwd(char *, size_t);
 void    *Malloc(size_t);
 void	*Realloc(void *ptr, size_t size);
+
 #endif
