@@ -187,3 +187,36 @@ O arquivo `index.c` contém a lógica central do shell, implementando o ciclo RE
 
 #
 (Content truncated due to size limit. Use line ranges to read in chunks)
+
+
+## Comparação de Requisitos: Projeto Mini-Shell vs. Documento `Projeto.pdf`
+
+Esta seção avalia o projeto mini-shell fornecido em relação aos requisitos e funcionalidades descritas no documento `Projeto.pdf`. O objetivo é identificar quais aspectos foram implementados e quais ainda não foram.
+
+### Requisitos Implementados
+
+O projeto mini-shell demonstra a implementação bem-sucedida de várias funcionalidades essenciais, conforme especificado no `Projeto.pdf`:
+
+*   **Prompt Interativo**: O shell exibe um prompt (`🐚<diretório_atual>🐚$>`) que indica que está pronto para receber comandos, cumprindo o requisito de um prompt interativo.
+*   **Leitura de Comandos com Argumentos**: A função `index_read_line` lê a linha completa digitada pelo usuário, e `index_split_line` a tokeniza em comandos e argumentos, permitindo a entrada de comandos como `ls -l` ou `echo Ola mundo`.
+*   **Criação de Processos (`fork()`):** A função `Fork()` em `utils.c` encapsula a chamada de sistema `fork()`, criando um novo processo filho para a execução de comandos externos.
+*   **Execução de Comandos (`execvp()`):** A função `Execvp()` em `utils.c` é um wrapper para `execvp()`, utilizada pelo processo filho para substituir sua imagem pelo comando digitado.
+*   **Espera pela Execução (`wait()`):** A função `Wait()` em `utils.c` encapsula a chamada de sistema `wait()`, garantindo que o processo pai aguarde a conclusão do processo filho antes de continuar.
+*   **Encerramento com `exit`**: O comando built-in `exit` (implementado como `index_exit` em `builtin.c`) permite que o usuário finalize o shell de forma controlada, incluindo uma animação de desligamento.
+*   **Modularização Mínima**: O projeto é bem modularizado, com funções separadas para:
+    *   Leitura (`index_read_line`)
+    *   Parsing/Tokenização (`index_split_line`)
+    *   Execução (`index_exec`, `index_launch`)
+    *   Controle do loop principal (`main`)
+*   **Tratamento de Erros com Mensagens Amigáveis**: As funções wrapper em `utils.c` utilizam `perror` para exibir mensagens de erro amigáveis em caso de falha de chamadas de sistema. A função `index_exec` tenta executar comandos externos se não forem built-ins, e `index_read_line` lida com erros de `getline`.
+*   **Uso de `fork()`, `execvp()`, `wait()`:** Todas essas chamadas de sistema são utilizadas através de funções wrapper no arquivo `utils.c`.
+*   **Execução de `echo` com argumentos**: O comando `echo` é implementado como um built-in (`cell_echo`) e suporta argumentos, incluindo a opção `-n`.
+
+### Requisitos Não Implementados ou Parcialmente Atendidos
+
+Alguns requisitos do `Projeto.pdf` não foram totalmente implementados ou não há evidência clara de sua implementação no código fornecido:
+
+*   **Uso de `read()` para Entrada Padrão**: O documento especifica o uso de `read()` para tratar a entrada padrão. No entanto, o projeto utiliza `getline()`, que é uma função de nível mais alto para leitura de linhas. Embora `getline()` seja eficiente, não atende diretamente ao requisito de usar `read()`.
+*   **Uso de `write()` para Saída de Dados**: O documento exige o uso de `write()` para saída de dados. O projeto utiliza `printf` (através da macro `p`), que é uma função de nível mais alto e não `write()` diretamente.
+*   **Execução de `ls` e `cat` com Argumentos**: Embora o mecanismo para executar comandos externos (`index_launch`) esteja presente e deva ser capaz de executar `ls` e `cat` com argumentos (assumindo que estejam no `PATH` do sistema), o projeto não inclui testes explícitos ou demonstrações no código ou na documentação gerada que confirmem a execução *correta e com argumentos* desses comandos específicos. O requisito pede para 
+
