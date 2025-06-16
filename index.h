@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <string.h>
 #include <sys/wait.h>
 
@@ -34,6 +35,10 @@ typedef struct s_builtin
     int (*foo)(char **);
 }   t_builtin;
 
+int	index_echo(char **args);  /* Echo command implementation */
+int	index_env(char **args);   /* Environment variables display */
+int	index_exit(char **args);  /* Shell exit command */
+
 void    printbanner(void);
 void    spinnerLoading();
 
@@ -41,7 +46,7 @@ void    Chdir(const char *path);
 pid_t   Fork(void);
 void    Execvp(const char *file,char *const argv[]);
 pid_t   Wait(int *status);
-pid_t   Wait(pid_t pid, int *status, int options);
+pid_t   Waitpid(pid_t pid, int *status, int options);
 int     index_exit(char **);
 void    Getcwd(char *, size_t);
 void    *Malloc(size_t);
