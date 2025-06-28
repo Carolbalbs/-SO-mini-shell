@@ -17,8 +17,8 @@ int index_env(char **args){
         p("%s\n",environ[i]);
     return(0);   
 }
-int	cell_echo(char **args)
-{
+int	index_echo(char **args){
+
 	int start = 1;
 	bool newline = true;
 
@@ -43,5 +43,5 @@ int	cell_echo(char **args)
 	// Print newline if -n option is not present
 	if (newline)
 		p("\n");
-
 	return (0);
+}

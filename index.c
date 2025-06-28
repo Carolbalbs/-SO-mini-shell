@@ -2,24 +2,24 @@
 
 int    status = 0;
 
-/**/
+
+t_builtin g_builtin[] = {
+    {.builtin_name ="echo", .foo=index_echo},
+    {.builtin_name ="env", .foo=index_env},
+    {.builtin_name ="exit", .foo=index_exit},
+    {.builtin_name =NULL}
+    
+};
 void index_launch(char **args){
 
     if (Fork() == INDEX_jr)
          Execvp(args[0],args);
     else     
         Wait(&status);
-    
+        // Waitpid(index_jr, &status, 0);
     
 
 }  
-t_builtin g_builtin[] = {
- //   {.builtin_name ="echo", .foo=index_echo};
-    {.builtin_name ="env", .foo=index_env};
-    {.builtin_name ="exit", .foo=index_exit},
-    {.builtin_name =NULL}
-
-};
  /* */  
 void index_exec(char **args){
     int     i;

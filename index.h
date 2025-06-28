@@ -37,7 +37,7 @@ typedef struct s_builtin
 
 int	index_echo(char **args);  /* Echo command implementation */
 int	index_env(char **args);   /* Environment variables display */
-int	index_exit(char **args);  /* Shell exit command */
+int	index_exit(char **args);  / * Shell exit command */
 
 void    printbanner(void);
 void    spinnerLoading();

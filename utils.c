@@ -73,6 +73,22 @@ pid_t	Wait(int *status)
 		*status = WEXITSTATUS(*status); 
 	return (result);
 }
+
+pid_t	Waitpid(pid_t pid, int *status, int options)
+{
+	pid_t	result;
+
+	if (!status)
+		return (-1);
+	result = waitpid(pid, status, options);
+	if (result == -1)
+		perror(RED"Waitpid failed"RST);
+	if (WIFEXITED(*status))
+		*status = WEXITSTATUS(*status); 
+	return (result);
+}
+
+
 void printbanner(void){
 p(G"███╗   ███╗██╗███╗   ██╗██╗    ███████╗██╗  ██╗███████╗██╗     ██╗\n"     
 "████╗ ████║██║████╗  ██║██║    ██╔════╝██║  ██║██╔════╝██║     ██║\n"     
