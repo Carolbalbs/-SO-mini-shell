@@ -1,0 +1,27 @@
+site_name: Sistemas Operacionais
+repo_url: https://github.com/carolbalbs/-SO-mini-shell
+theme:
+  name: mkdocs
+  color_mode: auto
+  user_color_mode_toggle: true
+
+  features:
+   - navigation.tabs
+
+  plugins:
+  - i18n:
+      default_language: pt
+      languages:
+        pt: Português
+        en: English
+nav:
+- Introdução : index.md     
+- index.h : indexH.md 
+- utils.c : utils.md
+- builtin.c : builtin.md
+
+
+
+# utils.c - Utilitárias e Wrappers  de System Calls
+# builtin.c - Implementação de Comandos Built-in
+# index.c - Lógica Principal do projeto (REPL)
