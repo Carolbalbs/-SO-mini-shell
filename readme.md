@@ -220,3 +220,25 @@ Alguns requisitos do `Projeto.pdf` não foram totalmente implementados ou não h
 *   **Uso de `write()` para Saída de Dados**: O documento exige o uso de `write()` para saída de dados. O projeto utiliza `printf` (através da macro `p`), que é uma função de nível mais alto e não `write()` diretamente.
 *   **Execução de `ls` e `cat` com Argumentos**: Embora o mecanismo para executar comandos externos (`index_launch`) esteja presente e deva ser capaz de executar `ls` e `cat` com argumentos (assumindo que estejam no `PATH` do sistema), o projeto não inclui testes explícitos ou demonstrações no código ou na documentação gerada que confirmem a execução *correta e com argumentos* desses comandos específicos. O requisito pede para 
 
+
+executar *no mínimo três comandos diferentes corretamente e com argumentos (ls, cat, echo)*. O `echo` está implementado como built-in, mas `ls` e `cat` não são built-ins e não há garantia explícita de seu funcionamento no código.
+*   **Tratar Erros com Mensagens Amigáveis (comando não encontrado)**: Embora haja tratamento de erros para falhas de chamadas de sistema, não há uma mensagem explícita de "comando não encontrado" quando um comando digitado pelo usuário não é um built-in e não pode ser executado via `execvp` (por exemplo, se o comando não existe no `PATH`). O `Execvp` apenas imprime "Failed" e sai.
+*   **Redirecionamento e Pipes (`dup2()`, `pipe()`):** O documento menciona `dup2()` e `pipe()` como funcionalidades avançadas para redirecionamento e pipes. O projeto mini-shell não implementa nenhuma dessas funcionalidades.
+*   **Arquivo README**: O `Projeto.pdf` exige a entrega de um arquivo README detalhado com informações sobre compilação, chamadas de sistema usadas, exemplos, e limitações. Embora eu tenha gerado uma documentação detalhada, um arquivo README específico com esses pontos não foi criado como parte do projeto mini-shell.
+*   **Vídeo Curto Demonstrando o Uso do Shell**: O requisito de entrega inclui um vídeo de demonstração, o que não é uma funcionalidade do código em si, mas um requisito de apresentação do projeto.
+
+### Resumo das Funcionalidades Não Implementadas
+
+Com base na análise, as seguintes funcionalidades e requisitos do `Projeto.pdf` não foram implementados no projeto mini-shell fornecido:
+
+1.  **Uso direto de `read()` para entrada padrão.**
+2.  **Uso direto de `write()` para saída de dados.**
+3.  **Tratamento explícito de "comando não encontrado" com mensagem amigável.**
+4.  **Redirecionamento de entrada/saída (`<`, `>`, `>>`).**
+5.  **Pipes (`|`).**
+6.  **Geração de um arquivo README conforme as especificações.**
+7.  **Criação de um vídeo de demonstração.**
+
+É importante notar que a ausência de `ls` e `cat` como built-ins não significa que o shell não possa executá-los, mas sim que o requisito de *executar no mínimo três comandos diferentes corretamente e com argumentos (ls, cat, echo)* não foi explicitamente demonstrado para `ls` e `cat` no código ou na documentação gerada, apenas para `echo`.
+
+
