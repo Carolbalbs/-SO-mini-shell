@@ -1,4 +1,4 @@
-site_name: Sistemas Operacionais
+site_name: SO
 repo_url: https://github.com/carolbalbs/-SO-mini-shell
 theme:
   name: mkdocs
