@@ -241,4 +241,12 @@ Com base na análise, as seguintes funcionalidades e requisitos do `Projeto.pdf`
 
 É importante notar que a ausência de `ls` e `cat` como built-ins não significa que o shell não possa executá-los, mas sim que o requisito de *executar no mínimo três comandos diferentes corretamente e com argumentos (ls, cat, echo)* não foi explicitamente demonstrado para `ls` e `cat` no código ou na documentação gerada, apenas para `echo`.
 
+----
 
+## Executando o programa:
+
+Na pasta raiz do projeto, execute os comandos a seguir para compilar os arquivos e executar a aplicação:
+
+```bash
+gcc -o app builtin.c index.c utils.c -I. && ./app
+```
