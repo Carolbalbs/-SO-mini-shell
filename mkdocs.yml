@@ -19,6 +19,8 @@ nav:
 - index.h : indexH.md 
 - utils.c : utils.md
 - builtin.c : builtin.md
+- mini-shell: mini-Shell em C.md
+- casos de uso: casos de uso.md
 
 
 
