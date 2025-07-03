@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>casos de uso - SO</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" disabled>
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">SO</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Introdução</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../indexH/" class="nav-link">index.h</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../utils/" class="nav-link">utils.c</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../builtin/" class="nav-link">builtin.c</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../mini-Shell%20em%20C/" class="nav-link">mini-shell</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">casos de uso</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../mini-Shell%20em%20C/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/carolbalbs/-SO-mini-shell/edit/master/docs/casos de uso.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                              <button id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme" class="nav-link dropdown-toggle">
+                                <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                <span class="d-lg-none ms-2">Toggle theme</span>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                                    <i class="fa-solid fa-sun fa-fw"></i>
+                                    <span class="ms-2">Light</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                                    <i class="fa-solid fa-moon fa-fw"></i>
+                                    <span class="ms-2">Dark</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="true">
+                                    <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                    <span class="ms-2">Auto</span>
+                                    <i class="fa-solid fa-check ms-auto"></i>
+                                  </button>
+                                </li>
+                              </ul>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script src="../js/darkmode.js"></script>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#casos-de-uso-detalhados-para-o-mini-shell" class="nav-link">Casos de Uso Detalhados para o Mini-Shell</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-casos-de-uso-para-requisitos-basicos" class="nav-link">1. Casos de Uso para Requisitos Básicos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-casos-de-uso-para-redirecionamento-de-io" class="nav-link">2. Casos de Uso para Redirecionamento de I/O</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-casos-de-uso-para-pipes" class="nav-link">3. Casos de Uso para Pipes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-casos-de-uso-para-tratamento-de-erros" class="nav-link">4. Casos de Uso para Tratamento de Erros</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-casos-de-uso-para-requisitos-de-entrega" class="nav-link">5. Casos de Uso para Requisitos de Entrega</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#casos-de-uso-detalhados-para-o-mini-shell_1" class="nav-link">Casos de Uso Detalhados para o Mini-Shell</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="casos-de-uso-detalhados-para-o-mini-shell">Casos de Uso Detalhados para o Mini-Shell</h1>
+<p>Este documento apresenta casos de uso detalhados para as funcionalidades do mini-shell, cobrindo tanto os requisitos explícitos do <code>Projeto.pdf</code> quanto as funcionalidades implementadas. Cada caso de uso descreve um cenário, as pré-condições, as etapas de execução e os resultados esperados.</p>
+<h2 id="1-casos-de-uso-para-requisitos-basicos">1. Casos de Uso para Requisitos Básicos</h2>
+<h3 id="caso-de-uso-11-inicializacao-e-prompt-interativo">Caso de Uso 1.1: Inicialização e Prompt Interativo</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário inicia o mini-shell e espera interagir com ele.</li>
+<li><strong>Pré-condições</strong>: O executável <code>mini_shell</code> está compilado e acessível.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário executa <code>./mini_shell</code> no terminal.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>Um banner de boas-vindas é exibido.</li>
+<li>Um prompt interativo é exibido, indicando o diretório de trabalho atual (ex: <code>🐚/home/ubuntu🐚$&gt;</code>).</li>
+<li>O shell aguarda a entrada do usuário.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-12-leitura-de-comando-simples">Caso de Uso 1.2: Leitura de Comando Simples</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário digita um comando simples sem argumentos.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>ls</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>O comando <code>ls</code> é executado.</li>
+<li>O conteúdo do diretório atual é listado na saída padrão.</li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-13-leitura-de-comando-com-argumentos">Caso de Uso 1.3: Leitura de Comando com Argumentos</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário digita um comando com múltiplos argumentos.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>echo Hello World</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>O comando <code>echo</code> é executado.</li>
+<li><code>Hello World</code> é impresso na saída padrão.</li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-14-execucao-de-comando-built-in-exit">Caso de Uso 1.4: Execução de Comando Built-in (<code>exit</code>)</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário deseja encerrar o mini-shell.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>exit</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>Uma animação de desligamento (<code>spinnerLoading</code>) é exibida.</li>
+<li>O mini-shell é encerrado com sucesso.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-15-execucao-de-comando-built-in-env">Caso de Uso 1.5: Execução de Comando Built-in (<code>env</code>)</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário deseja visualizar as variáveis de ambiente.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>env</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>As variáveis de ambiente do processo atual são listadas na saída padrão.</li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-16-execucao-de-comando-built-in-echo-com-opcao-n">Caso de Uso 1.6: Execução de Comando Built-in (<code>echo</code> com opção <code>-n</code>)</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário deseja imprimir texto sem uma nova linha final.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>echo -n Teste</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li><code>Teste</code> é impresso na saída padrão, sem uma nova linha. O próximo prompt aparece imediatamente após <code>Teste</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-17-execucao-de-comando-externo-cat">Caso de Uso 1.7: Execução de Comando Externo (<code>cat</code>)</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário deseja visualizar o conteúdo de um arquivo.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt. Existe um arquivo de texto (ex: <code>test.txt</code>) no diretório atual.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>cat test.txt</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>O conteúdo de <code>test.txt</code> é exibido na saída padrão.</li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-18-comando-nao-encontrado">Caso de Uso 1.8: Comando Não Encontrado</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário digita um comando que não existe.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>comando_inexistente</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>Uma mensagem de erro indicando "Command not found" é exibida no erro padrão.</li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-casos-de-uso-para-redirecionamento-de-io">2. Casos de Uso para Redirecionamento de I/O</h2>
+<h3 id="caso-de-uso-21-redirecionamento-de-saida">Caso de Uso 2.1: Redirecionamento de Saída (<code>&gt;</code>)</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário deseja salvar a saída de um comando em um novo arquivo, sobrescrevendo-o se existir.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>echo "Hello Redirection" &gt; output.txt</code> e pressiona Enter.</li>
+<li>O usuário digita <code>cat output.txt</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>Após o passo 1, o prompt é exibido novamente sem saída visível.</li>
+<li>Após o passo 2, <code>Hello Redirection</code> é exibido na saída padrão.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-22-redirecionamento-de-saida-append">Caso de Uso 2.2: Redirecionamento de Saída (Append <code>&gt;&gt;</code>)</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário deseja adicionar a saída de um comando ao final de um arquivo existente.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt. O arquivo <code>output.txt</code> existe e contém <code>Hello Redirection</code>.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>echo "Appended Line" &gt;&gt; output.txt</code> e pressiona Enter.</li>
+<li>O usuário digita <code>cat output.txt</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>Após o passo 1, o prompt é exibido novamente sem saída visível.</li>
+<li>Após o passo 2, a saída padrão exibe:
+    <code>Hello Redirection
+    Appended Line</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-23-redirecionamento-de-entrada">Caso de Uso 2.3: Redirecionamento de Entrada (<code>&lt;</code>)</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário deseja usar o conteúdo de um arquivo como entrada para um comando.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt. O arquivo <code>input.txt</code> existe e contém <code>Linha 1
+Linha 2</code>.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>cat &lt; input.txt</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>A saída padrão exibe:
+    <code>Linha 1
+    Linha 2</code></li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-casos-de-uso-para-pipes">3. Casos de Uso para Pipes</h2>
+<h3 id="caso-de-uso-31-pipe-simples">Caso de Uso 3.1: Pipe Simples</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário deseja encadear dois comandos, onde a saída do primeiro se torna a entrada do segundo.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>ls -l | grep mini_shell</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>A saída padrão exibe a linha correspondente ao executável <code>mini_shell</code> do comando <code>ls -l</code>.</li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-32-pipe-com-multiplos-comandos">Caso de Uso 3.2: Pipe com Múltiplos Comandos</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário deseja encadear três ou mais comandos.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>ls -l | grep .c | wc -l</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>A saída padrão exibe o número de arquivos <code>.c</code> no diretório atual.</li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-casos-de-uso-para-tratamento-de-erros">4. Casos de Uso para Tratamento de Erros</h2>
+<h3 id="caso-de-uso-41-erro-de-redirecionamento-arquivo-de-saida-ausente">Caso de Uso 4.1: Erro de Redirecionamento (Arquivo de Saída Ausente)</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário tenta redirecionar a saída sem especificar um arquivo.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>echo "Test" &gt;</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>Uma mensagem de erro como <code>Redirection error: No output file specified</code> é exibida no erro padrão.</li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-42-erro-de-redirecionamento-arquivo-de-entrada-ausente">Caso de Uso 4.2: Erro de Redirecionamento (Arquivo de Entrada Ausente)</h3>
+<ul>
+<li><strong>Cenário</strong>: O usuário tenta redirecionar a entrada de um arquivo inexistente.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está em execução e exibindo o prompt.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O usuário digita <code>cat &lt; non_existent_file.txt</code> e pressiona Enter.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>Uma mensagem de erro como <code>Redirection error: Could not open input file: No such file or directory</code> é exibida no erro padrão.</li>
+<li>O prompt é exibido novamente.</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-casos-de-uso-para-requisitos-de-entrega">5. Casos de Uso para Requisitos de Entrega</h2>
+<h3 id="caso-de-uso-51-geracao-do-arquivo-readme">Caso de Uso 5.1: Geração do Arquivo README</h3>
+<ul>
+<li><strong>Cenário</strong>: O projeto deve ser entregue com um arquivo README completo.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está implementado e compilado.</li>
+<li><strong>Passos</strong>: <ol>
+<li>O arquivo <code>README.md</code> é gerado (manualmente ou por script).</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>O arquivo <code>README.md</code> existe no diretório raiz do projeto.</li>
+<li>O <code>README.md</code> contém seções sobre:<ul>
+<li>Como compilar e rodar o mini-shell.</li>
+<li>Quais chamadas ao sistema foram utilizadas.</li>
+<li>Exemplos de comandos testados e suas saídas.</li>
+<li>Limitações conhecidas da implementação.</li>
+<li>Um placeholder para o link do vídeo de demonstração.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="caso-de-uso-52-geracao-do-video-de-demonstracao">Caso de Uso 5.2: Geração do Vídeo de Demonstração</h3>
+<ul>
+<li><strong>Cenário</strong>: O projeto deve ser acompanhado por um vídeo curto de demonstração.</li>
+<li><strong>Pré-condições</strong>: O mini-shell está funcional e os casos de uso básicos podem ser demonstrados.</li>
+<li><strong>Passos</strong>: <ol>
+<li>Um vídeo de no máximo 5 minutos é gravado demonstrando o uso do shell.</li>
+</ol>
+</li>
+<li><strong>Resultado Esperado</strong>: <ul>
+<li>Um arquivo de vídeo (ex: <code>.mp4</code>) é criado.</li>
+<li>O vídeo demonstra a inicialização do shell, a execução de comandos built-in e externos, e exemplos de redirecionamento e pipes.</li>
+<li>O vídeo é conciso e claro.</li>
+</ul>
+</li>
+</ul>
+<h2 id="casos-de-uso-detalhados-para-o-mini-shell_1">Casos de Uso Detalhados para o Mini-Shell</h2>
+<p>Este documento descreve casos de uso detalhados para as funcionalidades implementadas no mini-shell, cobrindo os requisitos levantados no <code>Projeto.pdf</code> e as melhorias adicionais.</p>
+<h3 id="1-execucao-de-comandos-basicos">1. Execução de Comandos Básicos</h3>
+<p><strong>Requisito:</strong> Executar no mínimo três comandos diferentes corretamente e com argumentos (ls, cat, echo).</p>
+<p><strong>Caso de Uso 1.1: Executar <code>echo</code> com argumento simples</strong>
+- <strong>Descrição:</strong> O usuário deseja exibir uma string simples na saída padrão.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>echo Hello</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> A string "Hello" é exibida na tela, seguida por uma nova linha.</p>
+<p><strong>Caso de Uso 1.2: Executar <code>echo</code> com múltiplos argumentos</strong>
+- <strong>Descrição:</strong> O usuário deseja exibir múltiplas strings separadas por espaços.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>echo Hello World</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> A string "Hello World" é exibida na tela, seguida por uma nova linha.</p>
+<p><strong>Caso de Uso 1.3: Executar <code>ls</code> sem argumentos</strong>
+- <strong>Descrição:</strong> O usuário deseja listar o conteúdo do diretório atual.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>ls</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> Uma lista dos arquivos e diretórios no diretório atual é exibida na tela.</p>
+<p><strong>Caso de Uso 1.4: Executar <code>ls</code> com argumento <code>-l</code></strong>
+- <strong>Descrição:</strong> O usuário deseja listar o conteúdo do diretório atual em formato longo.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>ls -l</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> Uma lista detalhada dos arquivos e diretórios no diretório atual é exibida na tela, incluindo permissões, proprietário, tamanho e data de modificação.</p>
+<p><strong>Caso de Uso 1.5: Executar <code>cat</code> em um arquivo existente</strong>
+- <strong>Descrição:</strong> O usuário deseja exibir o conteúdo de um arquivo de texto.
+- <strong>Pré-condições:</strong> O mini-shell está em execução e um arquivo de texto (ex: <code>test.txt</code>) existe no diretório atual.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>cat test.txt</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> O conteúdo de <code>test.txt</code> é exibido na tela.</p>
+<p><strong>Caso de Uso 1.6: Executar <code>cat</code> em um arquivo inexistente</strong>
+- <strong>Descrição:</strong> O usuário tenta exibir o conteúdo de um arquivo que não existe.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>cat non_existent_file.txt</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> Uma mensagem de erro (ex: "cat: non_existent_file.txt: No such file or directory") é exibida na tela.</p>
+<h3 id="2-parsing-robusto-tratamento-de-aspas">2. Parsing Robusto (Tratamento de Aspas)</h3>
+<p><strong>Requisito:</strong> Suporte a argumentos com espaços usando aspas.</p>
+<p><strong>Caso de Uso 2.1: <code>echo</code> com aspas duplas</strong>
+- <strong>Descrição:</strong> O usuário deseja exibir uma frase com espaços como um único argumento.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>echo "Hello World from Mini-Shell"</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> A frase "Hello World from Mini-Shell" é exibida na tela como uma única string.</p>
+<p><strong>Caso de Uso 2.2: <code>echo</code> com aspas simples</strong>
+- <strong>Descrição:</strong> O usuário deseja exibir uma frase com espaços usando aspas simples.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>echo 'Another test with quotes'</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> A frase "Another test with quotes" é exibida na tela como uma única string.</p>
+<p><strong>Caso de Uso 2.3: Comando com aspas e outros argumentos</strong>
+- <strong>Descrição:</strong> O usuário executa um comando que combina argumentos com e sem aspas.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>echo Part1 "Part 2 with spaces" Part3</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> A saída "Part1 Part 2 with spaces Part3" é exibida na tela.</p>
+<h3 id="3-tratamento-de-erro-comando-nao-encontrado">3. Tratamento de Erro "Comando Não Encontrado"</h3>
+<p><strong>Requisito:</strong> Exibir mensagem de erro clara para comandos inválidos.</p>
+<p><strong>Caso de Uso 3.1: Executar comando inexistente</strong>
+- <strong>Descrição:</strong> O usuário digita um comando que não existe no sistema.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>non_existent_command</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> A mensagem de erro "Command not found" é exibida na tela.</p>
+<h3 id="4-redirecionamento-de-entradasaida">4. Redirecionamento de Entrada/Saída</h3>
+<p><strong>Requisito:</strong> Suporte a <code>&gt;</code>, <code>&gt;&gt;</code>, <code>&lt;</code>.</p>
+<p><strong>Caso de Uso 4.1: Redirecionamento de saída (sobrescrever)</strong>
+- <strong>Descrição:</strong> O usuário deseja salvar a saída de um comando em um novo arquivo ou sobrescrever um arquivo existente.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>echo "Hello World" &gt; output.txt</code> e pressiona Enter.
+    2. O usuário digita <code>cat output.txt</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> O arquivo <code>output.txt</code> é criado (ou sobrescrito) e contém "Hello World". O comando <code>cat</code> exibe "Hello World".</p>
+<p><strong>Caso de Uso 4.2: Redirecionamento de saída (anexar)</strong>
+- <strong>Descrição:</strong> O usuário deseja adicionar a saída de um comando ao final de um arquivo existente.
+- <strong>Pré-condições:</strong> O mini-shell está em execução e <code>output.txt</code> contém "Hello World".
+- <strong>Passos:</strong>
+    1. O usuário digita <code>echo "Appended Line" &gt;&gt; output.txt</code> e pressiona Enter.
+    2. O usuário digita <code>cat output.txt</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> O arquivo <code>output.txt</code> agora contém "Hello World\nAppended Line". O comando <code>cat</code> exibe o conteúdo completo.</p>
+<p><strong>Caso de Uso 4.3: Redirecionamento de entrada</strong>
+- <strong>Descrição:</strong> O usuário deseja usar o conteúdo de um arquivo como entrada para um comando.
+- <strong>Pré-condições:</strong> O mini-shell está em execução e um arquivo <code>input.txt</code> existe com o conteúdo "This is input.".
+- <strong>Passos:</strong>
+    1. O usuário digita <code>cat &lt; input.txt</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> O conteúdo de <code>input.txt</code> ("This is input.") é exibido na tela.</p>
+<p><strong>Caso de Uso 4.4: Redirecionamento de entrada e saída combinados</strong>
+- <strong>Descrição:</strong> O usuário deseja processar um arquivo de entrada e salvar a saída em um arquivo diferente.
+- <strong>Pré-condições:</strong> O mini-shell está em execução e <code>input.txt</code> existe com o conteúdo "Line 1\nLine 2".
+- <strong>Passos:</strong>
+    1. O usuário digita <code>cat &lt; input.txt &gt; output_copy.txt</code> e pressiona Enter.
+    2. O usuário digita <code>cat output_copy.txt</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> O arquivo <code>output_copy.txt</code> é criado e contém o mesmo conteúdo de <code>input.txt</code>. O comando <code>cat</code> exibe o conteúdo de <code>output_copy.txt</code>.</p>
+<h3 id="5-pipes">5. Pipes (<code>|</code>)</h3>
+<p><strong>Requisito:</strong> Suporte a pipes para encadeamento de comandos.</p>
+<p><strong>Caso de Uso 5.1: Pipe simples (<code>ls | grep</code>)</strong>
+- <strong>Descrição:</strong> O usuário deseja listar arquivos e filtrar a saída usando <code>grep</code>.
+- <strong>Pré-condições:</strong> O mini-shell está em execução e existem arquivos <code>.c</code> no diretório atual.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>ls -l | grep .c</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> Apenas as linhas da saída de <code>ls -l</code> que contêm ".c" são exibidas na tela.</p>
+<p><strong>Caso de Uso 5.2: Pipe com múltiplos comandos</strong>
+- <strong>Descrição:</strong> O usuário deseja encadear três comandos usando pipes.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>echo "one\ntwo\nthree" | grep "o" | wc -l</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> O número de linhas que contêm "o" (neste caso, 2) é exibido na tela.</p>
+<h3 id="6-built-in-cd">6. Built-in <code>cd</code></h3>
+<p><strong>Requisito:</strong> Implementar o comando <code>cd</code>.</p>
+<p><strong>Caso de Uso 6.1: <code>cd</code> para um diretório existente</strong>
+- <strong>Descrição:</strong> O usuário deseja mudar para um diretório específico.
+- <strong>Pré-condições:</strong> O mini-shell está em execução e um diretório (ex: <code>my_dir</code>) existe.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>cd my_dir</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> O diretório de trabalho atual do shell é alterado para <code>my_dir</code>. O prompt reflete o novo diretório.</p>
+<p><strong>Caso de Uso 6.2: <code>cd</code> sem argumentos (para HOME)</strong>
+- <strong>Descrição:</strong> O usuário deseja retornar ao seu diretório <code>HOME</code>.
+- <strong>Pré-condições:</strong> O mini-shell está em execução e o diretório atual não é o <code>HOME</code>.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>cd</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> O diretório de trabalho atual do shell é alterado para o diretório <code>HOME</code> do usuário. O prompt reflete o novo diretório.</p>
+<p><strong>Caso de Uso 6.3: <code>cd</code> para um diretório inexistente</strong>
+- <strong>Descrição:</strong> O usuário tenta mudar para um diretório que não existe.
+- <strong>Pré-condições:</strong> O mini-shell está em execução.
+- <strong>Passos:</strong>
+    1. O usuário digita <code>cd non_existent_dir</code> e pressiona Enter.
+- <strong>Pós-condições:</strong> Uma mensagem de erro (ex: "cd error: No such file or directory") é exibida na tela e o diretório de trabalho atual permanece inalterado.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

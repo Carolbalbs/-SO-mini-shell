@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>mini-shell - SO</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" disabled>
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">SO</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Introdução</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../indexH/" class="nav-link">index.h</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../utils/" class="nav-link">utils.c</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../builtin/" class="nav-link">builtin.c</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">mini-shell</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos%20de%20uso/" class="nav-link">casos de uso</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../builtin/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../casos%20de%20uso/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/carolbalbs/-SO-mini-shell/edit/master/docs/mini-Shell em C.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                              <button id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme" class="nav-link dropdown-toggle">
+                                <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                <span class="d-lg-none ms-2">Toggle theme</span>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                                    <i class="fa-solid fa-sun fa-fw"></i>
+                                    <span class="ms-2">Light</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                                    <i class="fa-solid fa-moon fa-fw"></i>
+                                    <span class="ms-2">Dark</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="true">
+                                    <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                    <span class="ms-2">Auto</span>
+                                    <i class="fa-solid fa-check ms-auto"></i>
+                                  </button>
+                                </li>
+                              </ul>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script src="../js/darkmode.js"></script>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#mini-shell" class="nav-link">Mini-Shell</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#como-compilar-e-rodar" class="nav-link">Como Compilar e Rodar</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#chamadas-ao-sistema-utilizadas" class="nav-link">Chamadas ao Sistema Utilizadas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#exemplos-de-comandos-testados-e-suas-saidas" class="nav-link">Exemplos de Comandos Testados e Suas Saídas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#limitacoes-conhecidas-da-implementacao" class="nav-link">Limitações Conhecidas da Implementação</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#video-curto-demonstrando-o-uso-do-shell" class="nav-link">Vídeo Curto Demonstrando o Uso do Shell</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#funcionalidades-implementadas" class="nav-link">Funcionalidades Implementadas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="mini-shell">Mini-Shell</h1>
+<p>Este projeto implementa um mini-shell básico em C, simulando funcionalidades de um interpretador de comandos Linux. Ele foi desenvolvido como parte de um projeto integrador para explorar chamadas de sistema e conceitos fundamentais de sistemas operacionais.</p>
+<h2 id="como-compilar-e-rodar">Como Compilar e Rodar</h2>
+<p>Para compilar o mini-shell, certifique-se de ter o <code>gcc</code> (GNU Compiler Collection) instalado em seu sistema. Em sistemas baseados em Debian/Ubuntu, você pode instalá-lo com:</p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install build-essential
+</code></pre>
+<p>Após a instalação do <code>gcc</code>, navegue até o diretório onde os arquivos-fonte (<code>index.c</code>, <code>utils.c</code>, <code>builtin.c</code>, <code>index.h</code>) estão localizados e execute o seguinte comando para compilar:</p>
+<pre><code class="language-bash">gcc -o mini_shell index.c utils.c builtin.c -I.
+</code></pre>
+<p>Este comando criará um executável chamado <code>mini_shell</code> no diretório atual.</p>
+<p>Para rodar o mini-shell, basta executar o binário:</p>
+<pre><code class="language-bash">./mini_shell
+</code></pre>
+<p>O shell exibirá um prompt interativo (<code>🐚/caminho/atual🐚$&gt;</code>) onde você poderá digitar comandos.</p>
+<h2 id="chamadas-ao-sistema-utilizadas">Chamadas ao Sistema Utilizadas</h2>
+<p>O mini-shell faz uso extensivo das seguintes chamadas de sistema POSIX para sua operação:</p>
+<ul>
+<li><code>fork()</code>: Utilizada para criar novos processos filhos, permitindo a execução de comandos externos sem encerrar o shell principal.</li>
+<li><code>execvp()</code>: Usada pelo processo filho para substituir sua imagem pelo programa do comando digitado. A função procura o executável no <code>PATH</code> do sistema.</li>
+<li><code>wait()</code>: Empregada pelo processo pai para aguardar a conclusão de um processo filho, coletando seu status de saída e evitando processos zumbis.</li>
+<li><code>read()</code>: Implementada para ler a entrada do usuário do <code>stdin</code>, conforme o requisito do projeto.</li>
+<li><code>write()</code>: Utilizada para exibir o prompt e outras mensagens na saída padrão (<code>stdout</code>) e erro padrão (<code>stderr</code>), conforme o requisito do projeto.</li>
+<li><code>open()</code>: Usada para abrir arquivos para operações de redirecionamento de entrada e saída.</li>
+<li><code>dup2()</code>: Essencial para implementar o redirecionamento de entrada/saída e pipes, duplicando descritores de arquivo.</li>
+<li><code>pipe()</code>: Utilizada para criar um pipe de comunicação entre processos, fundamental para a funcionalidade de pipes.</li>
+<li><code>getcwd()</code>: Obtém o diretório de trabalho atual para exibir no prompt.</li>
+<li><code>malloc()</code> e <code>realloc()</code>: Embora não sejam chamadas de sistema diretamente, são funções de gerenciamento de memória de baixo nível que interagem com o sistema para alocar e realocar memória dinamicamente.</li>
+</ul>
+<h2 id="exemplos-de-comandos-testados-e-suas-saidas">Exemplos de Comandos Testados e Suas Saídas</h2>
+<p>O mini-shell suporta a execução de comandos built-in e externos, além de redirecionamento de I/O e pipes.</p>
+<h3 id="comandos-built-in">Comandos Built-in</h3>
+<ul>
+<li>
+<p><code>exit</code>:
+    <code>🐚/home/ubuntu🐚$&gt; exit
+    Shutting down...
+    [===========💥]
+    ✅ EXIT ✅</code>
+    Encerra o mini-shell com uma animação de desligamento.</p>
+</li>
+<li>
+<p><code>env</code>:
+    <code>🐚/home/ubuntu🐚$&gt; env
+    TERM=xterm
+    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    LANG=C.UTF-8
+    ... (outras variáveis de ambiente)</code>
+    Exibe as variáveis de ambiente do processo atual.</p>
+</li>
+<li>
+<p><code>echo &lt;texto&gt;</code>:
+    <code>🐚/home/ubuntu🐚$&gt; echo Hello World
+    Hello World
+    🐚/home/ubuntu🐚$&gt; echo -n Hello World
+    Hello World🐚/home/ubuntu🐚$&gt;</code>
+    Imprime o texto fornecido. A opção <code>-n</code> suprime a nova linha final.</p>
+</li>
+</ul>
+<h3 id="comandos-externos">Comandos Externos</h3>
+<p>O mini-shell pode executar qualquer comando disponível no <code>PATH</code> do sistema.</p>
+<ul>
+<li>
+<p><code>ls</code>:
+    <code>🐚/home/ubuntu🐚$&gt; ls
+    builtin.c  index.c  index.h  mini_shell  utils.c
+    🐚/home/ubuntu🐚$&gt; ls -l
+    total 60
+    -rw-r--r-- 1 ubuntu ubuntu  3028 Jun 16 10:00 builtin.c
+    -rw-r--r-- 1 ubuntu ubuntu  5820 Jun 16 10:00 index.c
+    -rw-r--r-- 1 ubuntu ubuntu  1292 Jun 16 10:00 index.h
+    -rwxr-xr-x 1 ubuntu ubuntu 17264 Jun 16 10:00 mini_shell
+    -rw-r--r-- 1 ubuntu ubuntu  3568 Jun 16 10:00 utils.c</code>
+    Lista o conteúdo do diretório atual.</p>
+</li>
+<li>
+<p><code>cat &lt;arquivo&gt;</code>:
+    ```bash
+    🐚/home/ubuntu🐚$&gt; cat builtin.c
+    #include "index.h"
+    #include <stdbool.h></p>
+<p>int index_exit(char **args){
+...
+```
+Exibe o conteúdo de um arquivo.</p>
+</li>
+</ul>
+<h3 id="redirecionamento-de-entradasaida">Redirecionamento de Entrada/Saída</h3>
+<ul>
+<li><strong>Redirecionamento de Saída (<code>&gt;</code>):</strong> Redireciona a saída padrão de um comando para um arquivo, sobrescrevendo-o.
+    ```bash
+    🐚/home/ubuntu🐚$&gt; echo </li>
+</ul>
+<p>"Hello World" &gt; output.txt
+    🐚/home/ubuntu🐚$&gt; cat output.txt
+    Hello World
+    ```</p>
+<ul>
+<li>
+<p><strong>Redirecionamento de Saída (Append <code>&gt;&gt;</code>):</strong> Redireciona a saída padrão de um comando para um arquivo, adicionando ao final.
+    <code>bash
+    🐚/home/ubuntu🐚$&gt; echo "First line" &gt; append.txt
+    🐚/home/ubuntu🐚$&gt; echo "Second line" &gt;&gt; append.txt
+    🐚/home/ubuntu🐚$&gt; cat append.txt
+    First line
+    Second line</code></p>
+</li>
+<li>
+<p><strong>Redirecionamento de Entrada (<code>&lt;</code>):</strong> Redireciona a entrada padrão de um comando de um arquivo.
+    <code>bash
+    🐚/home/ubuntu🐚$&gt; cat &lt; append.txt
+    First line
+    Second line</code></p>
+</li>
+</ul>
+<h3 id="pipes">Pipes</h3>
+<p>O mini-shell suporta pipes (<code>|</code>) para encadear comandos, onde a saída de um comando se torna a entrada do próximo.</p>
+<ul>
+<li><strong>Exemplo de Pipe:</strong>
+    <code>bash
+    🐚/home/ubuntu🐚$&gt; ls -l | grep mini_shell
+    -rwxr-xr-x 1 ubuntu ubuntu 17264 Jun 16 10:00 mini_shell</code>
+    Lista os arquivos detalhadamente e filtra a linha que contém "mini_shell".</li>
+</ul>
+<h2 id="limitacoes-conhecidas-da-implementacao">Limitações Conhecidas da Implementação</h2>
+<p>Esta versão do mini-shell possui algumas limitações:</p>
+<ul>
+<li><strong>Comandos Built-in Fixos</strong>: A lista de comandos built-in (<code>env</code>, <code>exit</code>, <code>echo</code>) é fixa e não pode ser estendida dinamicamente em tempo de execução.</li>
+<li><strong>Ausência de Variáveis de Ambiente do Shell</strong>: Não há suporte para variáveis de ambiente internas do shell (ex: <code>$PATH</code>, <code>$HOME</code>) que podem ser definidas e usadas dentro do shell.</li>
+<li><strong>Sem Histórico de Comandos</strong>: Não há funcionalidade de histórico de comandos (setas para cima/baixo).</li>
+<li><strong>Sem Autocompletar</strong>: Não há suporte para autocompletar nomes de arquivos ou comandos.</li>
+<li><strong>Tratamento Básico de Erros</strong>: Embora <code>perror</code> seja usado para erros de chamadas de sistema, o tratamento de erros para comandos não encontrados é genérico ("Command not found") e não fornece detalhes específicos sobre o motivo da falha (ex: permissão negada, comando inexistente).</li>
+<li><strong>Ausência de Comandos Complexos</strong>: Não há suporte para estruturas de controle de fluxo (if, for, while), execução em segundo plano (<code>&amp;</code>), ou encadeamento de comandos com <code>&amp;&amp;</code> ou <code>||</code>.</li>
+<li><strong>Gerenciamento de Jobs</strong>: Não há suporte para gerenciamento de jobs (suspender, retomar processos).</li>
+</ul>
+<h2 id="video-curto-demonstrando-o-uso-do-shell">Vídeo Curto Demonstrando o Uso do Shell</h2>
+<p>Para uma demonstração visual do mini-shell em ação, por favor, assista ao vídeo disponível em [Link para o Vídeo] (a ser fornecido pelo usuário, pois a ferramenta não gera vídeos).</p>
+<h2 id="funcionalidades-implementadas">Funcionalidades Implementadas</h2>
+<h3 id="parsing-robusto-tratamento-de-aspas">Parsing Robusto (Tratamento de Aspas)</h3>
+<p>O shell agora suporta o parsing de argumentos que contêm espaços, utilizando aspas simples (<code>'</code>) ou duplas (<code>"</code>). Isso permite que comandos como <code>echo "Hello World"</code> sejam interpretados corretamente como um único argumento. A função <code>split_line_with_quotes</code> é responsável por essa lógica, garantindo que o texto dentro das aspas seja tratado como um token único, mesmo que contenha delimitadores de espaço.</p>
+<h3 id="uso-de-read-e-write">Uso de <code>read()</code> e <code>write()</code></h3>
+<p>Para maior controle sobre as operações de entrada e saída, o shell foi modificado para utilizar as chamadas de sistema <code>read()</code> e <code>write()</code> diretamente. A função <code>read_line_from_fd</code> em <code>utils.c</code> lê a entrada caractere por caractere de um descritor de arquivo (<code>fd</code>), permitindo a leitura de linhas de forma mais flexível. Similarmente, a saída do prompt é agora gerenciada por <code>write()</code> em <code>index_read_line</code>, proporcionando uma interação mais direta com o terminal.</p>
+<h3 id="tratamento-de-erro-comando-nao-encontrado">Tratamento de Erro "Comando Não Encontrado"</h3>
+<p>Quando um comando externo não é encontrado no PATH do sistema, o shell agora exibe uma mensagem de erro clara: "Command not found". Isso é implementado na função <code>Execvp</code> em <code>utils.c</code>, que verifica o retorno de <code>execvp</code> e, em caso de falha, imprime a mensagem de erro apropriada no <code>stderr</code> antes de retornar um status de erro. Isso melhora a experiência do usuário, fornecendo feedback imediato sobre comandos inválidos.</p>
+<h3 id="redirecionamento-de-entradasaida_1">Redirecionamento de Entrada/Saída</h3>
+<p>O mini-shell agora suporta redirecionamento de entrada (<code>&lt;</code>), redirecionamento de saída para sobrescrever (<code>&gt;</code>) e redirecionamento de saída para anexar (<code>&gt;&gt;</code>). A função <code>handle_redirection</code> em <code>index.c</code> é responsável por identificar esses operadores na linha de comando, abrir os arquivos correspondentes e duplicar os descritores de arquivo (<code>dup2</code>) para redirecionar <code>stdin</code> ou <code>stdout</code> conforme necessário. Após a execução do comando, os descritores de arquivo originais são restaurados para garantir o comportamento normal do shell.</p>
+<p>Exemplos:
+- <code>cat &lt; input.txt</code>: Redireciona o conteúdo de <code>input.txt</code> para a entrada do comando <code>cat</code>.
+- <code>echo "Hello" &gt; output.txt</code>: Escreve "Hello" no arquivo <code>output.txt</code>, sobrescrevendo o conteúdo existente.
+- <code>echo "World" &gt;&gt; output.txt</code>: Anexa "World" ao final do arquivo <code>output.txt</code>.</p>
+<h3 id="pipes_1">Pipes (<code>|</code>)</h3>
+<p>O shell agora permite a comunicação entre comandos através de pipes. Múltiplos comandos podem ser encadeados usando o operador <code>|</code>, onde a saída de um comando se torna a entrada do próximo. A função <code>execute_pipeline</code> em <code>index.c</code> gerencia a criação de pipes (<code>pipe()</code>), a duplicação de descritores de arquivo e a execução de processos filhos para cada comando na pipeline, garantindo que o fluxo de dados seja correto.</p>
+<p>Exemplo:
+- <code>ls -l | grep .c</code>: Lista todos os arquivos no diretório atual e filtra aqueles que terminam com <code>.c</code>.</p>
+<h3 id="built-in-cd">Built-in <code>cd</code></h3>
+<p>O comando <code>cd</code> (change directory) foi implementado como um built-in do shell. Isso significa que a mudança de diretório é tratada diretamente pelo shell, sem a necessidade de invocar um processo externo. A função <code>index_cd</code> em <code>builtin.c</code> utiliza a chamada de sistema <code>chdir()</code> para alterar o diretório de trabalho atual do shell. Se nenhum argumento for fornecido, o <code>cd</code> muda para o diretório <code>HOME</code> do usuário. Em caso de erro (por exemplo, diretório não encontrado), uma mensagem de erro é exibida.</p>
+<p>Exemplos:
+- <code>cd /tmp</code>: Muda para o diretório <code>/tmp</code>.
+- <code>cd</code>: Muda para o diretório <code>HOME</code> do usuário.
+- <code>cd non_existent_dir</code>: Exibe uma mensagem de erro.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
