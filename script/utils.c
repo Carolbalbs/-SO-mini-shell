@@ -4,79 +4,75 @@
 
 //WRAPPERS
 
-void Getcwd(char *buf, size_t size){
-    if (NULL == getcwd(buf , size))
-        perror(RED"getcwd FAILED"RST); 
+void ObterDiretorioAtual(char *buf, size_t tamanho) {
+    if (NULL == getcwd(buf, tamanho))
+        perror(VERMELHO"erro em getcwd"RST); 
 }
-void *Malloc(size_t size){
-    void     *ptr;
 
-    if(size == 0)
+void *AlocarMemoria(size_t tamanho) {
+    void *ptr;
+
+    if (tamanho == 0)
         return(NULL);
-    ptr = malloc(size);
-    if(!ptr){
-        perror(RED"Malloc Failed"RST);
+    ptr = malloc(tamanho);
+    if (!ptr) {
+        perror(VERMELHO"erro na alocação"RST);
         exit(EXIT_FAILURE);
     }
-   return (ptr);
+    return (ptr);
 }
-void *Realloc(void *ptr, size_t size){
-    void    *new_ptr;
 
-    new_ptr = realloc(ptr, size);
-    if (!new_ptr && size != 0){
-        perror(RED"Realloc Failed"RST);
+void *Realocar(void *ptr, size_t tamanho) {
+    void *novo_ptr;
+
+    novo_ptr = realloc(ptr, tamanho);
+    if (!novo_ptr && tamanho != 0) {
+        perror(VERMELHO"erro na realocação"RST);
         exit(EXIT_FAILURE);
     }
-    return(new_ptr);
+    return(novo_ptr);
 }
 
-pid_t Fork(void){
+pid_t CriarProcesso(void) {
     pid_t pid;
 
     pid = fork();
-    if (pid < 0)
-    {
-        perror(RED"Fork Failed"RST);
+    if (pid < 0) {
+        perror(VERMELHO"erro ao criar processo"RST);
         exit(EX_OSERR);
     }
     return(pid);
 }
 
-void	Execvp(const char *file, char *const argv[]){
-    if (!file || !argv){
-    
-        fprintf(stderr, RED"Execvp invalid arguments\n"RST);
+void ExecutarComando(const char *arquivo, char *const argv[]) {
+    if (!arquivo || !argv) {
+        fprintf(stderr, VERMELHO"argumentos inválidos para ExecutarComando\n"RST);
         exit(EXIT_FAILURE);
     }
-    if (execvp(file, argv) == -1){
-    
-        perror(RED"Command not found"RST);
+    if (execvp(arquivo, argv) == -1) {
+        perror(VERMELHO"comando não encontrado"RST);
         exit(EX_UNAVAILABLE);
     }
-    
 }
 
-pid_t	Wait(int *status)
-{
-	pid_t	result;
+pid_t EsperarProcesso(int *status) {
+    pid_t resultado;
 
-	if (!status)
-	{
-		fprintf(stderr, RED"Wait: status argument required\n"RST);
-		return (-1);
-	}
-	result = wait(status);
-	if (result == -1)
-		perror(RED"Wait failed"RST);
-	if (WIFEXITED(*status))
-		*status = WEXITSTATUS(*status); 
-	return (result);
+    if (!status) {
+        fprintf(stderr, VERMELHO"EsperarProcesso: argumento status é obrigatório\n"RST);
+        return (-1);
+    }
+    resultado = wait(status);
+    if (resultado == -1)
+        perror(VERMELHO"erro ao esperar processo"RST);
+    if (WIFEXITED(*status))
+        *status = WEXITSTATUS(*status); 
+    return (resultado);
 }
 
 
-void printbanner(void){
-p(G"███╗   ███╗██╗███╗   ██╗██╗    ███████╗██╗  ██╗███████╗██╗     ██╗\n"     
+void imprimir_banner(void){
+imprimir(VERDE"███╗   ███╗██╗███╗   ██╗██╗    ███████╗██╗  ██╗███████╗██╗     ██╗\n"     
 "████╗ ████║██║████╗  ██║██║    ██╔════╝██║  ██║██╔════╝██║     ██║\n"     
 "██╔████╔██║██║██╔██╗ ██║██║    ███████╗███████║█████╗  ██║     ██║\n"     
 "██║╚██╔╝██║██║██║╚██╗██║██║    ╚════██║██╔══██║██╔══╝  ██║     ██║\n"     
@@ -84,25 +80,25 @@ p(G"███╗   ███╗██╗███╗   ██╗██╗    █
 "╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝    ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝\n"
 "                                                                       \n"RST);
 }
-void spinnerLoading() 
+void carregamentoAnimado() 
 {
-    const char *charging[] = {
+    const char *carregando[] = {
         "[      ]",
         "[=     ]",
         "[==    ]",
         "[===   ]",
         "[====💥]",
     };
-    const int frames = sizeof(charging) / sizeof(charging[0]);
+ const int quadros = sizeof(carregando) / sizeof(carregando[0]);
 
-	p(RED"Shutting down...\n"RST);
+	imprimir(VERMELHO"Saindo do shell...\n"RST);
 
     // Loop through the "charging" animation for 3 seconds
-    for (int i = 0; i < frames; i++) {
-        p("\r" Y "%s" RST, charging[i]);
+    for (int i = 0; i < quadros; i++) {
+        imprimir("\r" AMARELO "%s" RST, carregando[i]);
         fflush(stdout);  // Force update the console
         usleep(421337);  
     }
-	p(C"\n✅ EXIT ✅\n"RST);
-	exit(X_OK);
+	imprimir(CIANO"\n✅ EXIT ✅\n"RST);
+	exit(EX_OK);
 }
