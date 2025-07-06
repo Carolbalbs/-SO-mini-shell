@@ -17,7 +17,9 @@ int index_env(char **args){
         p("%s\n",environ[i]);
     return(0);   
 }
+
 int	index_echo(char **args){
+
 
 	int start = 1;
 	bool newline = true;
@@ -45,3 +47,4 @@ int	index_echo(char **args){
 		p("\n");
 	return (0);
 }
+

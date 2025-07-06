@@ -51,7 +51,7 @@ void	Execvp(const char *file, char *const argv[]){
     }
     if (execvp(file, argv) == -1){
     
-        perror(RED"Failed"RST);
+        perror(RED"Command not found"RST);
         exit(EX_UNAVAILABLE);
     }
     
@@ -69,20 +69,6 @@ pid_t	Wait(int *status)
 	result = wait(status);
 	if (result == -1)
 		perror(RED"Wait failed"RST);
-	if (WIFEXITED(*status))
-		*status = WEXITSTATUS(*status); 
-	return (result);
-}
-
-pid_t	Waitpid(pid_t pid, int *status, int options)
-{
-	pid_t	result;
-
-	if (!status)
-		return (-1);
-	result = waitpid(pid, status, options);
-	if (result == -1)
-		perror(RED"Waitpid failed"RST);
 	if (WIFEXITED(*status))
 		*status = WEXITSTATUS(*status); 
 	return (result);
