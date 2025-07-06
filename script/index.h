@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 /*
 ** ANSI Color codes for terminal output formatting:
@@ -38,6 +39,7 @@ typedef struct s_builtin
 int	index_echo(char **args);  /* Echo command implementation */
 int	index_env(char **args);   /* Environment variables display */
 int	index_exit(char **args);  /* Shell exit command */
+char *read_line(int fd);
 
 void    printbanner(void);
 void    spinnerLoading();

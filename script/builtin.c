@@ -1,4 +1,5 @@
 #include "index.h"
+#include <unistd.h>
 
 int index_exit(char **args){
 
@@ -48,3 +49,36 @@ int	index_echo(char **args){
 	return (0);
 }
 
+
+char *read_line(int fd) {
+    char *buffer = NULL;
+    size_t bufsize = 0;
+    size_t pos = 0;
+    char ch;
+
+    while (1) {
+        ssize_t bytes_read = read(fd, &ch, 1);
+        
+        if (bytes_read == -1) {
+            perror(RED"read failed"RST);
+            free(buffer);
+            return NULL;
+        } else if (bytes_read == 0 || ch == '\n') {
+            if (buffer == NULL && bytes_read == 0) {
+                return NULL; // EOF
+            }
+            // Adiciona terminador nulo
+            char *new_buffer = Realloc(buffer, pos + 1);
+            new_buffer[pos] = '\0';
+            return new_buffer;
+        } else {
+            // Realoca o buffer se necessário
+            if (pos >= bufsize) {
+                bufsize += BUFSIZ;
+                char *new_buffer = Realloc(buffer, bufsize);
+                buffer = new_buffer;
+            }
+            buffer[pos++] = ch;
+        }
+    }
+}

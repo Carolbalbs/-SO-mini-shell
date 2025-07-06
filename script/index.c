@@ -59,25 +59,23 @@ char **index_split_line(char *line){
     tokens[position] = NULL;
     return tokens;
 }
-char *index_read_line(void){
-
-    char   *buf;
-    size_t bufsize;
+char *index_read_line(void) {
     char cwd[BUFSIZ];
-
-    buf = NULL;
     Getcwd(cwd, sizeof(cwd));
-    p(C"🐚%s🐚"RST"$>",cwd);
-    if (getline(&buf, &bufsize, stdin) == -1){
-        free(buf);
-        buf = NULL; 
-        if (feof(stdin))
+    p(C"🐚%s🐚"RST"$>", cwd);
+    fflush(stdout);  // Garante que o prompt seja exibido antes da leitura
+
+    char *line = read_line(STDIN_FILENO);
+    
+    if (line == NULL) {
+        if (errno) {
+            p(RED"read failed"RST);
+        } else {
             p(RED"[EOF]"RST);
-        else{
-            p(RED"getline failed"RST); 
-        } 
+        }
     }
-    return buf;  
+    
+    return line;
 }
 
 int main(){
