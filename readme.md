@@ -1,5 +1,30 @@
 # 🐚 Projeto Shell em C
 
+## Como Compilar e Rodar
+
+Certifique-se de ter o `gcc` (GNU Compiler Collection) instalado em seu sistema. Em sistemas baseados em Debian/Ubuntu, você pode instalá-lo com:
+
+```bash
+sudo apt-get update
+sudo apt-get install build-essential
+```
+
+Após a instalação do `gcc`, navegue até o diretório onde os arquivos-fonte (`index.c`, `utils.c`, `builtin.c`, `index.h`) estão localizados e execute o seguinte comando para compilar:
+
+```bash
+gcc -o mini_shell index.c utils.c builtin.c -I.
+```
+
+Este comando criará um executável chamado `mini_shell` no diretório atual.
+
+Para rodar o mini-shell, basta executar o binário:
+
+```bash
+./mini_shell
+```
+
+O shell exibirá um prompt interativo (`🐚/caminho/atual🐚$>`) onde você poderá digitar comandos.
+
 ## 📘 Introdução
 
 Este projeto implementa um shell básico em linguagem C, dividido em módulos, cada um com responsabilidades específicas:
@@ -252,14 +277,16 @@ env
 ls -l
 exit
 
-### Resumo
+### ⚠️ Limitações Conhecidas
 
-#### 🔸 Este projeto implementa um shell simples em C, com suporte a:
+#### 🔸 Não suporta redirecionamento (>, <, >>, 2>, etc.)
 
-Comandos internos: 'exit', 'echo', 'env'
+#### 🔸 Não interpreta pipes (|) entre comandos
 
-Execução de comandos externos
+#### 🔸 Não suporta variáveis de ambiente (como echo $PATH)
 
-Animações e prompt com cores
+#### 🔸 Sem histórico de comandos
 
-Tratamento de erros com mensagens visuais
+#### 🔸 Não trata sinais (como Ctrl+C)
+
+#### 🔸 A tokenização é básica e não reconhece aspas corretamente em todos os casos
