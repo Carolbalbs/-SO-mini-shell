@@ -33,7 +33,7 @@ Descrever a funcionalidade de cada arquivo, suas interações e sua contribuiç�
 #define EX_OK         0   // Execução normal
 #define EX_OSERR     71   // Erro no sistema operacional
 #define EX_UNAVAILABLE 69 // Recurso necessário indisponível
-´´´
+```
 
 #### 🔸 Bibliotecas Importadas
 
@@ -46,7 +46,7 @@ Inclui bibliotecas padrão e POSIX: stdio.h, stdlib.h, unistd.h, string.h, stdbo
     '<stdbool.h>' Suporte ao tipo bool
     '<sys/wait.h>' Funções e macros para esperar o término de processos filhos.
     '<errno.h>' Variável global errno e definições de códigos de erro do sistema.
-´´´
+```
 
 #### 🔸 Macros Definidas
 
@@ -59,7 +59,7 @@ Inclui bibliotecas padrão e POSIX: stdio.h, stdlib.h, unistd.h, string.h, stdbo
 #define imprimir(...) printf(__VA_ARGS__)
 #define DELIMITADORES "\n\t \v\f\r"
 #define INDEX_FILHO 0 (para identificar o processo filho após um 'fork()')
-´´´
+```
 
 #### 🔸 Define a estrutura 't_comando_integrado' para mapear nomes de comandos internos às suas funções correspondentes.
 
@@ -92,7 +92,7 @@ Utilitários:
 'Realocar' - Redimensionar blocos de memória com realloc() de forma segura
 'imprimir_banner' - Exibir arte ASCII colorida no início do shell
 'carregamentoAnimado' - Mostrar uma animação visual divertida ao encerrar o shell '(exit)'
-´´´
+```
 
 ### `utils.c` - Funções Auxiliares e Wrappers
 
