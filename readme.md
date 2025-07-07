@@ -96,14 +96,17 @@ Utilitários:
 
 ### `utils.c` - Funções Auxiliares e Wrappers
 
-Gerenciamento de diretório:
+#### 🔸 Gerenciamento de diretório:
 
+```c
 'ObterDiretorioAtual(char *buf, size_t tamanho)':
 
 Usa 'getcwd()' para obter o caminho atual. Exibe erro com 'perror' se falhar.
+```
 
-Gerenciamento de memória:
+#### 🔸 Gerenciamento de memória:
 
+```c
 'AlocarMemoria(size_t tamanho)':
 
 Wrapper para 'malloc()' com verificação de erro.
@@ -111,9 +114,11 @@ Wrapper para 'malloc()' com verificação de erro.
 'Realocar(void *ptr, size_t tamanho)':
 
 Wrapper para 'realloc()' com verificação de erro.
+```
 
-Processos:
+#### 🔸 Processos:
 
+```c
 'CriarProcesso()':
 
 Wrapper para 'fork()', encerra se falhar.
@@ -125,9 +130,11 @@ Wrapper para 'execvp()' que encerra o programa caso o comando não seja encontra
 'EsperarProcesso()':
 
 Wrapper para 'wait()', captura e retorna o status de saída do processo filho.
+```
 
-Interface:
+#### 🔸 Interface:
 
+```c
 'imprimir_banner()':
 
 Exibe uma arte em ASCII no início do shell.
@@ -135,53 +142,65 @@ Exibe uma arte em ASCII no início do shell.
 'carregamentoAnimado()':
 
 Mostra uma animação com "=", simulando carregamento antes de encerrar o shell.
+```
 
-builtin.c - Comandos Internos
+### `builtin.c` - Comandos Internos
 
-'index_sair(char **args)'
+#### 🔸 'index_sair(char **args)'
 
+```c
 Comando interno 'exit'.
 
 Ignora argumentos.
 
 Chama 'carregamentoAnimado()' e encerra com 'exit(EXIT_SUCCESS)'.
+```
 
-'index_ambiente(char **args)'
+#### 🔸 'index_ambiente(char **args)'
 
+```c
 Comando interno 'env'.
 
 Itera sobre 'environ' e imprime cada variável de ambiente.
 
 Retorna 1 se 'environ' for NULL.
+```
 
-'index_eco(char **args)'
+#### 🔸 'index_eco(char **args)'
 
+```c
 Comando interno 'echo'.
 
 Suporta opção '-n' para não imprimir nova linha.
 
 Imprime argumentos separados por espaço, a partir de 'args[1]' ou 'args[2]' (se '-n' estiver presente).
+```
 
-'ler_linha(int fd)'
+#### 🔸 'ler_linha(int fd)'
 
+```c
 Função auxiliar para ler linha de entrada usando 'read()' caractere por caractere.
 
 Lida com realocação dinâmica do buffer.
 
 Retorna string terminada com '\0'.
+```
 
-index.c - Lógica Principal (REPL)
+### `index.c` - Lógica Principal (REPL)
 
-Variável global:
+#### 🔸 Variável global:
 
+```c
 'int status': guarda o código de saída do último comando.
 
 'comandos_integrados[]'
 
 Lista de comandos internos: 'echo', 'env', 'exit'.
+```
 
-Funções principais:
+#### 🔸 Funções principais:
 
+```c
 'executar_comando(char **args)':
 
 Cria processo com 'CriarProcesso()' e executa comando externo.
@@ -197,9 +216,11 @@ Tokeniza a linha de entrada com 'strtok()' usando delimitadores definidos.
 'ler_linha_entrada()':
 
 Exibe prompt com diretório atual e chama 'ler_linha(STDIN_FILENO)' para ler entrada.
+```
 
-'main()'
+#### 🔸 'main()'
 
+```c
 Exibe banner.
 
 Executa ciclo REPL:
@@ -211,18 +232,19 @@ Divide em tokens
 Executa o comando (interno ou externo)
 
 Libera memória
+```
 
-Exemplos de Compilação e Execução
+### `Exemplos de Compilação e Execução`
 
-Compilação:
+#### 🔸 Compilação:
 
 gcc -Wall -Wextra -Werror index.c utils.c builtin.c -o minishell
 
-Execução:
+#### 🔸 Execução:
 
 ./minishell
 
-Exemplos de uso:
+#### 🔸 Exemplos de uso:
 
 echo Olá mundo
 echo -n sem quebra
@@ -230,9 +252,9 @@ env
 ls -l
 exit
 
-Resumo
+### `Resumo`
 
-Este projeto implementa um shell simples em C, com suporte a:
+#### 🔸 Este projeto implementa um shell simples em C, com suporte a:
 
 Comandos internos: 'exit', 'echo', 'env'
 
