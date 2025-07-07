@@ -279,14 +279,14 @@ exit
 
 ### ⚠️ Limitações Conhecidas
 
-#### 🔸 Não suporta redirecionamento (>, <, >>, 2>, etc.)
+Não suporta redirecionamento (>, <, >>, 2>, etc.)
 
-#### 🔸 Não interpreta pipes (|) entre comandos
+Não interpreta pipes (|) entre comandos
 
-#### 🔸 Não suporta variáveis de ambiente (como echo $PATH)
+Não suporta variáveis de ambiente (como echo $PATH)
 
-#### 🔸 Sem histórico de comandos
+Sem histórico de comandos
 
-#### 🔸 Não trata sinais (como Ctrl+C)
+Não trata sinais (como Ctrl+C)
 
-#### 🔸 A tokenização é básica e não reconhece aspas corretamente em todos os casos
+A tokenização é básica e não reconhece aspas corretamente em todos os casos
