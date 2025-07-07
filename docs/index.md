@@ -23,4 +23,3 @@ Por fim, a experiência do usuário também foi considerada, com elementos como 
 
 
 #
-(Content truncated due to size limit. Use line ranges to read in chunks)
