@@ -234,7 +234,7 @@ Executa o comando (interno ou externo)
 Libera memória
 ```
 
-### `Exemplos de Compilação e Execução`
+### Exemplos de Compilação e Execução
 
 #### 🔸 Compilação:
 
@@ -252,7 +252,7 @@ env
 ls -l
 exit
 
-### `Resumo`
+### Resumo
 
 #### 🔸 Este projeto implementa um shell simples em C, com suporte a:
 
