@@ -1,4 +1,4 @@
-# Lógica Principal do Shell (REPL)
+# Lógica Principal do Shell 
 
 ## Introdução
 
@@ -11,8 +11,6 @@ O projeto é dividido em módulos, cada um com responsabilidades específicas:
 *   `utils.c`: Implementa funções utilitárias e wrappers para chamadas de sistema.
 *   `builtin.c`: Contém a implementação de comandos built-in do shell.
 *   `index.c`: A lógica principal do shell, incluindo o loop de leitura, avaliação e execução de comandos (REPL).
-
-
 
 
 
@@ -38,7 +36,7 @@ Para garantir a funcionalidade completa do shell, `index.h` inclui várias bibli
 *   `<string.h>`: Para funções de manipulação de strings, como `strcmp` e `strtok`.
 *   `<sys/wait.h>`: Para funções relacionadas ao controle de processos filhos, como `wait` e macros para verificar o status de saída de processos (`WIFEXITED`, `WEXITSTATUS`).
 
-### Macros para Formatação de Saída e Utilitários
+### Utilitários
 
 O arquivo `index.h` define macros que simplificam a formatação da saída do terminal com cores ANSI e facilitam a impressão de mensagens. Essas macros são cruciais para melhorar a legibilidade e a experiência do usuário no shell:
 
