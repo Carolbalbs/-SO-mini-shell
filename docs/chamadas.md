@@ -1,7 +1,7 @@
 # Conceitos Chamadas ao Sistema Utilizadas
 
 
-## O mini-shell faz uso extensivo das seguintes chamadas de sistema POSIX para sua operação:
+#### O mini-shell faz uso extensivo das chamadas abaixo utilizando sistema POSIX para sua operação:
 
 *   `fork()`: Utilizada para criar novos processos filhos, permitindo a execução de comandos externos sem encerrar o shell principal.
 *   `execvp()`: Usada pelo processo filho para substituir sua imagem pelo programa do comando digitado. A função procura o executável no `PATH` do sistema.
