@@ -1,8 +1,4 @@
-# Mini-Shell 
-
-Este projeto implementa um mini-shell básico em C, simulando funcionalidades de um interpretador de comandos Linux. Ele foi desenvolvido como parte de um projeto integrador para explorar chamadas de sistema e conceitos fundamentais de sistemas operacionais.
-
-## Como Compilar e Rodar
+# Como Compilar e Rodar
 
 Para compilar o mini-shell, certifique-se de ter o `gcc` (GNU Compiler Collection) instalado em seu sistema. Em sistemas baseados em Debian/Ubuntu, você pode instalá-lo com:
 
@@ -27,20 +23,6 @@ Para rodar o mini-shell, basta executar o binário:
 
 O shell exibirá um prompt interativo (`🐚/caminho/atual🐚$>`) onde você poderá digitar comandos.
 
-## Chamadas ao Sistema Utilizadas
-
-O mini-shell faz uso extensivo das seguintes chamadas de sistema POSIX para sua operação:
-
-*   `fork()`: Utilizada para criar novos processos filhos, permitindo a execução de comandos externos sem encerrar o shell principal.
-*   `execvp()`: Usada pelo processo filho para substituir sua imagem pelo programa do comando digitado. A função procura o executável no `PATH` do sistema.
-*   `wait()`: Empregada pelo processo pai para aguardar a conclusão de um processo filho, coletando seu status de saída e evitando processos zumbis.
-*   `read()`: Implementada para ler a entrada do usuário do `stdin`, conforme o requisito do projeto.
-*   `write()`: Utilizada para exibir o prompt e outras mensagens na saída padrão (`stdout`) e erro padrão (`stderr`), conforme o requisito do projeto.
-*   `open()`: Usada para abrir arquivos para operações de redirecionamento de entrada e saída.
-*   `dup2()`: Essencial para implementar o redirecionamento de entrada/saída e pipes, duplicando descritores de arquivo.
-*   `pipe()`: Utilizada para criar um pipe de comunicação entre processos, fundamental para a funcionalidade de pipes.
-*   `getcwd()`: Obtém o diretório de trabalho atual para exibir no prompt.
-*   `malloc()` e `realloc()`: Embora não sejam chamadas de sistema diretamente, são funções de gerenciamento de memória de baixo nível que interagem com o sistema para alocar e realocar memória dinamicamente.
 
 ## Exemplos de Comandos Testados e Suas Saídas
 
@@ -105,12 +87,6 @@ O mini-shell pode executar qualquer comando disponível no `PATH` do sistema.
     ```
     Exibe o conteúdo de um arquivo.
 
-### Redirecionamento de Entrada/Saída
-
-*   **Redirecionamento de Saída (`>`):** Redireciona a saída padrão de um comando para um arquivo, sobrescrevendo-o.
-    ```bash
-    🐚/home/ubuntu🐚$> echo 
-
 
 "Hello World" > output.txt
     🐚/home/ubuntu🐚$> cat output.txt
@@ -126,23 +102,11 @@ O mini-shell pode executar qualquer comando disponível no `PATH` do sistema.
     Second line
     ```
 
-*   **Redirecionamento de Entrada (`<`):** Redireciona a entrada padrão de um comando de um arquivo.
-    ```bash
-    🐚/home/ubuntu🐚$> cat < append.txt
-    First line
-    Second line
-    ```
 
-### Pipes
+## Vídeo Curto Demonstrando o Uso do Shell
 
-O mini-shell suporta pipes (`|`) para encadear comandos, onde a saída de um comando se torna a entrada do próximo.
+Mini-shell em ação! Vídeo disponível em [./] 
 
-*   **Exemplo de Pipe:**
-    ```bash
-    🐚/home/ubuntu🐚$> ls -l | grep mini_shell
-    -rwxr-xr-x 1 ubuntu ubuntu 17264 Jun 16 10:00 mini_shell
-    ```
-    Lista os arquivos detalhadamente e filtra a linha que contém "mini_shell".
 
 ## Limitações Conhecidas da Implementação
 
@@ -156,50 +120,6 @@ Esta versão do mini-shell possui algumas limitações:
 *   **Ausência de Comandos Complexos**: Não há suporte para estruturas de controle de fluxo (if, for, while), execução em segundo plano (`&`), ou encadeamento de comandos com `&&` ou `||`.
 *   **Gerenciamento de Jobs**: Não há suporte para gerenciamento de jobs (suspender, retomar processos).
 
-## Vídeo Curto Demonstrando o Uso do Shell
 
-Para uma demonstração visual do mini-shell em ação, por favor, assista ao vídeo disponível em [Link para o Vídeo] (a ser fornecido pelo usuário, pois a ferramenta não gera vídeos).
-
-
-
-
-## Funcionalidades Implementadas
-
-### Parsing Robusto (Tratamento de Aspas)
-
-O shell agora suporta o parsing de argumentos que contêm espaços, utilizando aspas simples (`'`) ou duplas (`"`). Isso permite que comandos como `echo "Hello World"` sejam interpretados corretamente como um único argumento. A função `split_line_with_quotes` é responsável por essa lógica, garantindo que o texto dentro das aspas seja tratado como um token único, mesmo que contenha delimitadores de espaço.
-
-### Uso de `read()` e `write()`
-
-Para maior controle sobre as operações de entrada e saída, o shell foi modificado para utilizar as chamadas de sistema `read()` e `write()` diretamente. A função `read_line_from_fd` em `utils.c` lê a entrada caractere por caractere de um descritor de arquivo (`fd`), permitindo a leitura de linhas de forma mais flexível. Similarmente, a saída do prompt é agora gerenciada por `write()` em `index_read_line`, proporcionando uma interação mais direta com o terminal.
-
-### Tratamento de Erro "Comando Não Encontrado"
-
-Quando um comando externo não é encontrado no PATH do sistema, o shell agora exibe uma mensagem de erro clara: "Command not found". Isso é implementado na função `Execvp` em `utils.c`, que verifica o retorno de `execvp` e, em caso de falha, imprime a mensagem de erro apropriada no `stderr` antes de retornar um status de erro. Isso melhora a experiência do usuário, fornecendo feedback imediato sobre comandos inválidos.
-
-### Redirecionamento de Entrada/Saída
-
-O mini-shell agora suporta redirecionamento de entrada (`<`), redirecionamento de saída para sobrescrever (`>`) e redirecionamento de saída para anexar (`>>`). A função `handle_redirection` em `index.c` é responsável por identificar esses operadores na linha de comando, abrir os arquivos correspondentes e duplicar os descritores de arquivo (`dup2`) para redirecionar `stdin` ou `stdout` conforme necessário. Após a execução do comando, os descritores de arquivo originais são restaurados para garantir o comportamento normal do shell.
-
-Exemplos:
-- `cat < input.txt`: Redireciona o conteúdo de `input.txt` para a entrada do comando `cat`.
-- `echo "Hello" > output.txt`: Escreve "Hello" no arquivo `output.txt`, sobrescrevendo o conteúdo existente.
-- `echo "World" >> output.txt`: Anexa "World" ao final do arquivo `output.txt`.
-
-### Pipes (`|`)
-
-O shell agora permite a comunicação entre comandos através de pipes. Múltiplos comandos podem ser encadeados usando o operador `|`, onde a saída de um comando se torna a entrada do próximo. A função `execute_pipeline` em `index.c` gerencia a criação de pipes (`pipe()`), a duplicação de descritores de arquivo e a execução de processos filhos para cada comando na pipeline, garantindo que o fluxo de dados seja correto.
-
-Exemplo:
-- `ls -l | grep .c`: Lista todos os arquivos no diretório atual e filtra aqueles que terminam com `.c`.
-
-### Built-in `cd`
-
-O comando `cd` (change directory) foi implementado como um built-in do shell. Isso significa que a mudança de diretório é tratada diretamente pelo shell, sem a necessidade de invocar um processo externo. A função `index_cd` em `builtin.c` utiliza a chamada de sistema `chdir()` para alterar o diretório de trabalho atual do shell. Se nenhum argumento for fornecido, o `cd` muda para o diretório `HOME` do usuário. Em caso de erro (por exemplo, diretório não encontrado), uma mensagem de erro é exibida.
-
-Exemplos:
-- `cd /tmp`: Muda para o diretório `/tmp`.
-- `cd`: Muda para o diretório `HOME` do usuário.
-- `cd non_existent_dir`: Exibe uma mensagem de erro.
 
 
