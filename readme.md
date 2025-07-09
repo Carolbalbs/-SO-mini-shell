@@ -1,7 +1,7 @@
 # 🐚 Projeto Shell em C 
-##Acesse o link da documentação (clicando_aqui)[]
+## Acesse o link da documentação [clicando_aqui](https://carolbalbs.github.io/-SO-mini-shell/)
 
-## Como Compilar e Rodar
+## Como Compilar e Rod
 
 Certifique-se de ter o `gcc` (GNU Compiler Collection) instalado em seu sistema. Em sistemas baseados em Debian/Ubuntu, você pode instalá-lo com:
 
