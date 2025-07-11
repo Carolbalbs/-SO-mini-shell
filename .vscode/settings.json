@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "functional": "c",
+        "index.h": "c",
+        "string.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled",
+    "yaml.schemas": {
+        "https://json.schemastore.org/mkdocs-1.6.json": "file:///home/carol/%C3%81rea%20de%20trabalho/%5BSO%5Dmini-shell/so-project/mkdocs.yml"
+    }
+}
