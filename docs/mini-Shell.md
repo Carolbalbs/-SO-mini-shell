@@ -26,10 +26,5 @@ O shell exibirá um prompt interativo (`🐚/caminho/atual🐚$>`) onde você po
 
 ## Vídeo Curto Demonstrando o Uso do Shell
 
-Mini-shell em ação! Vídeo disponível em [] 
-
-
-
-
-
+Mini-shell em ação!
 
