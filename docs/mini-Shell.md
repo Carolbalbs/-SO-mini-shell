@@ -28,3 +28,6 @@ O shell exibirá um prompt interativo (`🐚/caminho/atual🐚$>`) onde você po
 
 Mini-shell em ação!
 
+<video width="320" height="240" controls autoplay loop>
+  <source src="./utils/_video.mov" type="video/quicktime">
+</video> 
